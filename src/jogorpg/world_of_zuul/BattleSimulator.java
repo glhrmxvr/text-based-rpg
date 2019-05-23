@@ -5,20 +5,20 @@
  */
 package jogorpg.world_of_zuul;
 
-import personagens.Hero;
-import personagens.Character;
-import personagens.Villain;
+import characters.Hero;
+import characters.Character;
+import characters.Villain;
 
 /**
  *
  * @author aluno
  */
-public class SimuladorDeBatalha {
+public class BattleSimulator {
   
     private Character player1;
     private Character player2;
     
-    public SimuladorDeBatalha(Hero hero, Villain villain){
+    public BattleSimulator(Hero hero, Villain villain){
         player1 = hero;
         player2 = villain;
     }

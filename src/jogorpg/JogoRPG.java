@@ -6,7 +6,7 @@
 package jogorpg;
 
 import jogorpg.world_of_zuul.Game;
-import personagens.Hero;
+import characters.Hero;
 
         
 /**

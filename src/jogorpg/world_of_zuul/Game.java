@@ -1,6 +1,6 @@
 package jogorpg.world_of_zuul;
 
-import personagens.Hero;
+import characters.Hero;
 
 /**
  *  This class is the main class of the "World of Zuul" application. 
