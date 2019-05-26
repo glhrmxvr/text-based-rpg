@@ -11,19 +11,19 @@ package jogorpg.world_of_zuul;
  */
 public class Item {
     
-    private String item;
-    private int weight;
+    private String itemName;
+    private int itemWeight;
 
-    public Item(String item, int weight) {
-        this.item = item;
-        this.weight = weight;
+    public Item(String itemName, int itemWeight) {
+        this.itemName = itemName;
+        this.itemWeight = itemWeight;
     }
     
-    public String getItem() {
-        return item;
+    public String getItemName() {
+        return itemName;
     }
 
-    public int getWeight() {
-        return weight;
+    public int getItemWeight() {
+        return itemWeight;
     }
 }

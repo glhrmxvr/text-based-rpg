@@ -12,36 +12,36 @@ package characters;
 public class Character {
     
     private String name;
-    private Integer energy;
+    private Integer health;
 
     public Character(String name) {
         this.name = name;
-        energy = 10;
+        health = 15;
     }
 
     public String getName() {
         return name;
     }
 
-    public Integer getEnergy() {
-        return energy;
+    public Integer getHealth() {
+        return health;
     }
     
     public void increment() {
-        if(energy <= 10)
-            energy++;
+        if(health <= 10)
+            health++;
     }
     
     public void decrement() {
-        energy--;
-        if(energy == 0)
+        health--;
+        if(health == 0)
             System.out.println(name + " died");
     }
     
     public void print() {
         System.out.println("#####################");
         System.out.println("# Nome: " + name);
-        System.out.println("# Energia" + energy);
+        System.out.println("# Energia" + health);
         System.out.println("#####################");
     }
 }

@@ -1,6 +1,7 @@
 package jogorpg.world_of_zuul;
 
 import characters.Hero;
+import characters.Villain;
 
 /**
  *  This class is the main class of the "World of Zuul" application. 
@@ -118,20 +119,16 @@ public class Game
             printHelp();
         }
         else if (commandWord == CommandWord.ATTACK) {
-            BattleSimulator battle = new BattleSimulator(hero,villain);
-            while(hero.getEnergy() != 0 || villain.getEnergy() != 0){
-                battle.fight();
-                hero.print();
-                villain.print();
-            }
-            if(hero.getEnergy() == 0){
-                System.out.println(villain.getName() + " won the battle!");
-                return true;
-            }
-            else{
-                //RETIRAR O VILAO DA SALA QUANDO MORRER
-                System.out.println(hero.getName() + " won the battle!");
-            }
+            wantToQuit = attack(command);
+        }
+        else if (commandWord == CommandWord.PICK) {
+            pick(command);
+        }
+        else if (commandWord == CommandWord.DROP) {
+            drop(command);
+        }
+        else if (commandWord == CommandWord.EAT) {
+            hero.increment();
         }
         else if (commandWord == CommandWord.GO) {
             goRoom(command);
@@ -198,6 +195,67 @@ public class Game
         }
         else {
             return true;  // signal that we want to quit
+        }
+    }
+    
+    private boolean attack(Command command){
+        if(!command.hasSecondWord()) {
+            System.out.println("Attack what?");
+            return false;
+        }
+        
+        currentRoom = hero.getCurrentRoom();
+        String villainName = command.getSecondWord();
+        Character villain = currentRoom.getVillain(villainName);
+        BattleSimulator battle = new BattleSimulator(hero,villain);
+            
+        while(hero.getHealth() != 0 || villain.getHealth() != 0){
+            battle.fight();
+            hero.print();
+            villain.print();
+        }
+        if(hero.getHealth() == 0){
+            System.out.println(villain.getName() + " won the battle!");
+            return true;
+        }
+        else{
+            villain
+            System.out.println(hero.getName() + " won the battle!");
+            return false;
+        }
+    }   
+    
+    public void pick(Command command){
+        if(!command.hasSecondWord()) {
+            System.out.println("Pick what?");
+        }
+        
+        String itemName = command.getSecondWord();
+        Item item = currentRoom.getItem(itemName);
+                
+        if(hero.addItem(itemName,item) && item != null){
+            hero.addItem(itemName,item);
+            currentRoom.removeItem(itemName);
+        }
+        else{
+            System.out.println("Sorry. You can't do that.");
+        }
+    }
+    
+    public void drop(Command command){
+        if(!command.hasSecondWord()) {
+            System.out.println("Drop what?");
+        }
+        
+        String itemName = command.getSecondWord();
+        Item item = hero.getItem(itemName);
+        
+        if(item != null){
+            currentRoom.addItem(itemName, item);
+            hero.removeItem(itemName);
+        }
+        else{
+            System.out.println("Sorry. You can't do that.");
         }
     }
 }

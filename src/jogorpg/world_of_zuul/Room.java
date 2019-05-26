@@ -1,5 +1,7 @@
 package jogorpg.world_of_zuul;
 
+import characters.Hero;
+import characters.Villain;
 import java.util.Set;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -23,6 +25,7 @@ public class Room
     private String description;
     private HashMap<String, Room> exits;        // stores exits of this room.
     private HashMap<String, Character> characters;
+    private HashMap<String, Item> roomItems;
     /**
      * Create a room described "description". Initially, it has
      * no exits. "description" is something like "a kitchen" or
@@ -34,6 +37,7 @@ public class Room
         this.description = description;
         exits = new HashMap<String, Room>();
         characters = new HashMap<String, Character>();
+        roomItems = new HashMap<String, Item>();
     }
 
     /**
@@ -81,6 +85,10 @@ public class Room
         return returnString;
     }
 
+    public HashMap<String, Character> getCharacters() {
+        return characters;
+    }
+
     /**
      * Return the room that is reached if we go from this room in direction
      * "direction". If there is no room in that direction, return null.
@@ -90,6 +98,39 @@ public class Room
     public Room getExit(String direction) 
     {
         return exits.get(direction);
+    }
+
+    public HashMap<String, Item> getRoomItems() {
+        return roomItems;
+    }
+    
+    public Item getItem(String item){
+        if(roomItems.containsKey(item))
+            return roomItems.get(item);
+        return null;
+    }
+    
+    public Character getVillain(String name){
+        if(characters.containsKey(name))
+            return characters.get(name);
+        return null;
+    }
+    
+    public boolean addItem(String name, Item item){
+        roomItems.put(name, item);
+        return true;
+    }
+    
+    public Item removeItem(String name){
+        return roomItems.remove(name);
+    }
+    
+    public void addCharacter(String name, Character character){
+        characters.put(name, character);
+    }
+    
+    public void removeCharacter(String name){
+        characters.remove(name);
     }
 }
 

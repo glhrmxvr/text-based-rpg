@@ -7,6 +7,7 @@ package characters;
 
 import java.util.HashMap;
 import jogorpg.world_of_zuul.Item;
+import jogorpg.world_of_zuul.Room;
 
 /**
  *
@@ -16,6 +17,7 @@ public class Hero extends Character{
     
     private double weightLimit;
     private HashMap<String, Item> inventory;
+    private Room currentRoom;
     
     public Hero(String name) {
         super(name);
@@ -27,8 +29,16 @@ public class Hero extends Character{
         return weightLimit;
     }
 
+    public Room getCurrentRoom() {
+        return currentRoom;
+    }
+
     public void setWeightLimit(int weightLimit) {
         this.weightLimit = weightLimit;
+    }
+
+    public HashMap<String, Item> getInventory() {
+        return inventory;
     }
     
     public void eat() {
@@ -36,19 +46,26 @@ public class Hero extends Character{
             increment();
     }   
     
-     public double inventoryWeight(){
+     public double getCurrentWeight(){
         double w = 0.0;
         for(String item : inventory.keySet())
-            w += inventory.get(item).getWeight();
+            w += inventory.get(item).getItemWeight();
         return w;
+    }
+     
+    public Item getItem(String item){
+        if(inventory.containsKey(item))
+            return inventory.get(item);
+        return null;
     }
     
     public boolean addItem(String string, Item item){
-        if(inventoryWeight() + item.getWeight() <= weightLimit){
+        if(getCurrentWeight() + item.getItemWeight() <= weightLimit){
             inventory.put(string, item);
             return true;
         }
         else
+            System.out.println("Full Inventory");
             return false;
     }
     
