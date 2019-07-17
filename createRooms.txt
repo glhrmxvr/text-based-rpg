@@ -1,0 +1,15 @@
+gate,in the castle's gate
+stable,in the stable
+yard,in the courtyard
+bakery,in the bakery
+brewery,in the brewery
+greathall,in the great hall
+chapel,in the chapel
+library,in the library
+secondhall,on the second hall
+guestbedroom,in a guest bedroom
+war,in the war room
+thirdhall,on the third hall
+armory,in the armory room
+kingbedroom,in King's bedroom
+saferoom,in the safehouse
